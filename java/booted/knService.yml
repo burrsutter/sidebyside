@@ -9,6 +9,13 @@ spec:
         spec:
           container:
             image: dev.local/rhdevelopers/booted:0.0.1
+            resources:
+              requests: 
+                memory: "150Mi" 
+                cpu: "100m" 
+              limits:
+                memory: "150Mi"
+                cpu: "100m" 
             livenessProbe:
               httpGet:
                 path: /healthz
