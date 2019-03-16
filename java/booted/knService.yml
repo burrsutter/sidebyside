@@ -11,11 +11,11 @@ spec:
             image: dev.local/rhdevelopers/booted:0.0.1
             resources:
               requests: 
-                memory: "150Mi" 
-                cpu: "500m" 
+                memory: "130Mi" 
+                cpu: "400m" 
               limits:
-                memory: "150Mi"
-                cpu: "750m" 
+                memory: "130Mi"
+                cpu: "400m" 
             livenessProbe:
               httpGet:
                 path: /healthz

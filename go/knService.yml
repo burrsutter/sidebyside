@@ -11,11 +11,11 @@ spec:
             image: dev.local/rhdevelopers/gonow:0.0.1
             resources:
               requests: 
-                memory: "50Mi" 
-                cpu: "100m" 
+                memory: "10Mi" 
+                cpu: "75m" 
               limits:
-                memory: "50Mi"
-                cpu: "100m" 
+                memory: "10Mi"
+                cpu: "75m" 
             livenessProbe:
               httpGet:
                 path: /healthz

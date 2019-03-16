@@ -11,11 +11,11 @@ spec:
             image: dev.local/rhdevelopers/noded:0.0.1
             resources:
               requests: 
-                memory: "50Mi" 
-                cpu: "100m" 
+                memory: "40Mi" 
+                cpu: "75m" 
               limits:
-                memory: "50Mi"
-                cpu: "100m" 
+                memory: "40Mi"
+                cpu: "75m" 
             livenessProbe:
               httpGet:
                 path: /healthz
