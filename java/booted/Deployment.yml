@@ -21,11 +21,11 @@ spec:
           - containerPort: 8080
         resources:
           requests: 
-            memory: "300Mi" 
-            cpu: "250m" # 1/4 core
+            memory: "150Mi" 
+            cpu: "500m" 
           limits:
-            memory: "400Mi"
-            cpu: "1000m" # 1 core
+            memory: "150Mi"
+            cpu: "750m" 
         livenessProbe:
           httpGet:
               port: 8080
@@ -37,6 +37,6 @@ spec:
           httpGet:
             path: /healthz
             port: 8080
-          initialDelaySeconds: 1
+          initialDelaySeconds: 3
           periodSeconds: 3
 

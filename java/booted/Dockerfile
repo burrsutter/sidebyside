@@ -1,6 +1,7 @@
-# FROM openjdk:8
-FROM gcr.io/distroless/java:8
+FROM openjdk:8-jdk-alpine
+# FROM gcr.io/distroless/java:8
 WORKDIR /app/
 COPY target/booted-0.0.1.jar .
 EXPOSE 8080
-CMD ["booted-0.0.1.jar"]
+ENTRYPOINT ["java","-Xmx32M", "-Xms32m","-jar","booted-0.0.1.jar"]
+# CMD ["booted-0.0.1.jar"]
