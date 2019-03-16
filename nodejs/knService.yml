@@ -11,10 +11,10 @@ spec:
             image: dev.local/rhdevelopers/noded:0.0.1
             resources:
               requests: 
-                memory: "40Mi" 
+                memory: "45Mi" 
                 cpu: "75m" 
               limits:
-                memory: "40Mi"
+                memory: "45Mi"
                 cpu: "75m" 
             livenessProbe:
               httpGet:
