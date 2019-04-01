@@ -1,0 +1,120 @@
+<!--
+  ~ Copyright 2016-2017 Red Hat, Inc, and individual contributors.
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  -->
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <title>Health Check Mission - Node.js</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <div>
+    <div class="sect1">
+        <h2 id="_health_check_booster">Health Check Booster</h2>
+        <div class="sectionbody">
+            <div class="paragraph">
+                <p>Demonstrates how the Kubernetes health checks work to determine if a container is still alive (the <em>liveness</em>                    of the container) and ready to serve the traffic for the HTTP endpoints of the application (the <em>readiness</em>                    of the container).</p>
+            </div>
+            <div class="paragraph">
+                <p>To demonstrate this behavior, the application configures a <code>/health</code> HTTP endpoint, which is used
+                    by Kubernetes to issue HTTP requests. If the container is still alive—​which means the Health HTTP endpoint
+                    is able to reply—​the management platform will receive HTTP code 200 as a response, and no further action
+                    is taken. After you click the
+                    <code>Stop Service</code> button, the HTTP endpoint stops returning a response, and the platform then restarts
+                    the pod with the unresponsive container. While the pod is down, the booster UI polls the service periodically
+                    until the pod is restarted. In the meantime, do <strong>not</strong> refresh the page because it will
+                    not be served until the pod finishes restarting.</p>
+            </div>
+            <div class="sect2">
+                <h3 id="_using_the_greeting_service">Using the greeting service</h3>
+            </div>
+        </div>
+    </div>
+
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="World">
+      </div>
+      <button id="invoke" type="submit" class="btn btn-success">Invoke</button>
+      <button id="stop" type="submit" class="btn btn-danger">Stop Service</button>
+    </form>
+
+    <h3>Result:</h3>
+    <pre><code id="greeting-result">Invoke the service to see the result.</code></pre>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script>
+    var stopTime;
+    var attempts;
+
+    function invokeService() {
+        var n = $("#name").val() || "World";
+        $.getJSON("/api/greeting?name=" + n, function (res) {
+            $("#greeting-result").html(JSON.stringify(res));
+        });
+    }
+
+    function invokeServiceandRetryUponFailures() {
+        var n = $("#name").val() || "World";
+        $.getJSON("/api/greeting?name=" + n, function (res) {
+            var rebirth = new Date();
+            var diff = (stopTime.getTime() - rebirth.getTime()) / 1000;
+            var abs = Math.abs(diff);
+            $("#greeting-result").html(JSON.stringify(res) + " (the recovery took " + abs + " seconds)");
+        })
+            .fail(function () {
+                $("#greeting-result").html("[" + ++attempts + "] Service not available... Retrying in 2 seconds");
+                setTimeout(invokeServiceandRetryUponFailures, 2000);
+            });
+    }
+
+    $(document).ready(function() {
+        $("#invoke").click(function (e) {
+            invokeService();
+            e.preventDefault();
+        });
+
+        $("#stop").click(function (e) {
+            $.get( "/api/stop", function( data ) {
+                $("#greeting-result").html("The application has been stopped...");
+                stopTime = new Date();
+                attempts = 0;
+                setTimeout(invokeServiceandRetryUponFailures, 2000);
+            });
+            e.preventDefault();
+        });
+    });
+</script>
+
+</body>
+
+</html>
