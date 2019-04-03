@@ -2,21 +2,21 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: apicrud
-  name: apicrud
+    app: quarkusapicrud
+  name: quarkusapicrud
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apicrud
+      app: quarkusapicrud
   template:
     metadata:
       labels:
-        app: apicrud
+        app: quarkusapicrud
     spec:
       containers:
-      - name: apicrud
-        image: dev.local/rhdevelopers/apicrud:0.0.1
+      - name: quarkusapicrud
+        image: dev.local/rhdevelopers/quarkusapicrud:0.0.1
         ports:
           - containerPort: 8080
         resources:

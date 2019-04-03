@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t dev.local/rhdevelopers/apicrud:0.0.1 .
+docker build -t dev.local/rhdevelopers/quarkusapicrud:0.0.1 .
