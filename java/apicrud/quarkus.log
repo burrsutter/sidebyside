@@ -1,5 +1,0 @@
-2019-03-07 16:24:10,140 burr hibernate-orm-resteasy-1.0-SNAPSHOT-runner[94707] DEBUG [org.hib.eng.tra.jta.pla.int.JtaPlatformInitiator] (main) HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.JBossStandAloneJtaPlatform]
-2019-03-07 16:24:10,168 burr hibernate-orm-resteasy-1.0-SNAPSHOT-runner[94707] DEBUG [org.hib.too.sch.int.SchemaCreatorImpl] (main) HHH000476: Executing import script 'resource:import.sql'
-2019-03-07 16:24:10,172 burr hibernate-orm-resteasy-1.0-SNAPSHOT-runner[94707] INFO  [io.quarkus] (main) Quarkus 0.11.0 started in 0.047s. Listening on: http://127.0.0.1:8080
-2019-03-07 16:24:10,172 burr hibernate-orm-resteasy-1.0-SNAPSHOT-runner[94707] INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-postgresql, narayana-jta, resteasy, resteasy-jsonb]
-2019-03-07 16:27:42,960 burr hibernate-orm-resteasy-1.0-SNAPSHOT-runner[94707] INFO  [io.quarkus] (main) Quarkus stopped in 0.001s
