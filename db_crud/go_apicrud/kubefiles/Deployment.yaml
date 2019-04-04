@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: goapicrud
+  name: goapicrud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goapicrud
+  template:
+    metadata:
+      labels:
+        app: goapicrud
+    spec:
+      containers:
+      - name: goapicrud
+        image: dev.local/rhdevelopers/goapicrud:0.0.1
+        ports:
+          - containerPort: 8080
+        resources:
+          requests: 
+            memory: "50Mi" 
+            cpu: "150m" 
+          limits:
+            memory: "50Mi"
+            cpu: "150m" 
+        livenessProbe:
+          httpGet:
+              port: 8080
+              path: /api/fruits
+          initialDelaySeconds: 1
+          periodSeconds: 5
+          timeoutSeconds: 2          
+        readinessProbe:
+          httpGet:
+            path: /api/fruits
+            port: 8080
+          initialDelaySeconds: 1
+          periodSeconds: 3
+

@@ -21,7 +21,7 @@ var err error;
 
 func main() {
 	start := time.Now()
-	db, err = gorm.Open("postgres", "sslmode=disable host=localhost port=5432 user=restcrud dbname=rest-crud password=restcrud")
+	db, err = gorm.Open("postgres", "sslmode=disable host=postgres port=5432 user=admin dbname=postgresdb password=adminS3cret")
 	if err != nil {
 		panic(err)
 	}
