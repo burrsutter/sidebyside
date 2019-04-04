@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: bootapicrud
+  name: bootapicrud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bootapicrud
+  template:
+    metadata:
+      labels:
+        app: bootapicrud
+    spec:
+      containers:
+      - name: bootapicrud
+        image: dev.local/rhdevelopers/bootapicrud:0.0.1
+        env: 
+        - name: spring.datasource.url
+          value: jdbc:postgresql://postgres:5432/postgresdb
+        ports:
+          - containerPort: 8080
+        resources:
+          requests: 
+            memory: "200Mi" 
+            cpu: "250m" 
+          limits:
+            memory: "350Mi"
+            cpu: "1000m" 
+        livenessProbe:
+          httpGet:
+              port: 8080
+              path: /
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 2
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 2
+
