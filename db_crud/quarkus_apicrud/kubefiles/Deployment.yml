@@ -22,21 +22,21 @@ spec:
         resources:
           requests: 
             memory: "50Mi" 
-            cpu: "150m" 
+            cpu: "200m" 
           limits:
             memory: "50Mi"
-            cpu: "150m" 
+            cpu: "200m" 
         livenessProbe:
           httpGet:
               port: 8080
               path: /fruits
-          initialDelaySeconds: 1
+          initialDelaySeconds: 2
           periodSeconds: 5
           timeoutSeconds: 2          
         readinessProbe:
           httpGet:
             path: /fruits/healthz
             port: 8080
-          initialDelaySeconds: 1
+          initialDelaySeconds: 2
           periodSeconds: 3
 

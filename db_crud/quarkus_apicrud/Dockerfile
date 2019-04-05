@@ -3,4 +3,5 @@ WORKDIR /work/
 COPY target/apicrud-1.0-runner /work/apicrud-1.0-runner
 RUN chmod 775 /work
 EXPOSE 8080
-ENTRYPOINT [ "./apicrud-1.0-runner", "-Dquarkus.http.host=0.0.0.0",  "-Xmx10m", "-Xmn10m", "-Xms10m" ]
+ENTRYPOINT [ "./apicrud-1.0-runner", "-Xmx10m", "-Xmn10m", "-Xms10m" ]
+# ENTRYPOINT [ "./apicrud-1.0-runner", "-Xmx12M", "-Xms8M", "-Xmn12M"]
