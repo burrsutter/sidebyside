@@ -10,6 +10,7 @@ curl localhost:8080
 
 Test it in Docker
 minishift docker-env
+OR
 minikube docker-env
 
 ./dockerbuild.sh
