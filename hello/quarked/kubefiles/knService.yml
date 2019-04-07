@@ -8,7 +8,7 @@ spec:
       revisionTemplate:
         spec:
           container:
-            image: dev.local/rhdevelopers/quarked:0.0.1
+            image: dev.local/burrsutter/quarked:1.0.0
             resources:
               requests: 
                 memory: "30Mi" 
