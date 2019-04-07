@@ -13,8 +13,6 @@ python app.py
 curl localhost:8000
 ctrl-c
 
-docker build -t burrsutter/flask_web_app .
+For Kubernetes
+./dockerbuild.sh
 
-docker run -it -p 8000:8000 --rm  burrsutter/flask_web_app
-
-curl localhost:8000

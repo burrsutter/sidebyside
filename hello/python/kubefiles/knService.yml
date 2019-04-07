@@ -1,0 +1,24 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: pythoned
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: dev.local/burrsutter/pythoned:1.0.0
+            resources:
+              requests: 
+                memory: "150Mi" 
+                cpu: "500m" 
+              limits:
+                memory: "150Mi"
+                cpu: "500m" 
+            livenessProbe:
+              httpGet:
+                path: /
+            readinessProbe:
+              httpGet:
+                path: /
