@@ -3,6 +3,7 @@ Set your docker cli tooling to the minikube docker daemon
 eval $(minikube docker-env)
 
 mvn clean package
+
 ./dockerbuild
 
 

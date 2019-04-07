@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: booted
+  name: booted
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booted
+  template:
+    metadata:
+      labels:
+        app: booted
+    spec:
+      containers:
+      - name: booted
+        image: quay.io/burrsutter/booted:1.0.0     
+        ports:
+          - containerPort: 8080
+        resources:
+          requests: 
+            memory: "130Mi" 
+            cpu: "500m" 
+          limits:
+            memory: "130Mi"
+            cpu: "750m" 
+        livenessProbe:
+          httpGet:
+              port: 8080
+              path: /
+          initialDelaySeconds: 1
+          periodSeconds: 5
+          timeoutSeconds: 2          
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+
