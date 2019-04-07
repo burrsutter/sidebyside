@@ -14,6 +14,9 @@ kubectl apply -f knService.yml
 
 For vanilla Kubernetes
 kubectl apply -f Deployment.yml
+OR
+kubectl apply -f Deployment_quay.yml
+
 kubectl apply -f Service.yml
 
 ./poller.sh
