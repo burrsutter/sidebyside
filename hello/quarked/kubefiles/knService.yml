@@ -6,6 +6,9 @@ spec:
   runLatest:
     configuration:
       revisionTemplate:
+        metadata:
+          annotations:
+            autoscaling.knative.dev/target: "10"      
         spec:
           container:
             image: dev.local/burrsutter/quarked:1.0.0

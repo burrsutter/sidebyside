@@ -6,16 +6,19 @@ spec:
   runLatest:
     configuration:
       revisionTemplate:
+        metadata:
+          annotations:
+            autoscaling.knative.dev/target: "10"
         spec:
           container:
             image: dev.local/burrsutter/pythoned:1.0.0
             resources:
               requests: 
-                memory: "150Mi" 
-                cpu: "500m" 
+                memory: "30Mi" 
+                cpu: "75m" 
               limits:
-                memory: "150Mi"
-                cpu: "500m" 
+                memory: "30Mi"
+                cpu: "75m" 
             livenessProbe:
               httpGet:
                 path: /

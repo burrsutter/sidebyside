@@ -6,9 +6,12 @@ spec:
   runLatest:
     configuration:
       revisionTemplate:
-        spec:
+        metadata:
+          annotations:
+            autoscaling.knative.dev/target: "10"
+        spec:          
           container:
-            image: dev.local/rhdevelopers/booted:1.0.0
+            image: dev.local/burrsutter/booted:1.0.0
             resources:
               requests: 
                 memory: "150Mi" 
