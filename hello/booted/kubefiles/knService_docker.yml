@@ -1,0 +1,27 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: booted
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        metadata:
+          annotations:
+            autoscaling.knative.dev/target: "10"
+        spec:          
+          container:
+            image: docker.io/burrsutter/booted:1.0.0
+            resources:
+              requests: 
+                memory: "150Mi" 
+                cpu: "500m" 
+              limits:
+                memory: "150Mi"
+                cpu: "500m" 
+            livenessProbe:
+              httpGet:
+                path: /healthz
+            readinessProbe:
+              httpGet:
+                path: /healthz
