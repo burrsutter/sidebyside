@@ -1,0 +1,27 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: csharp
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        metadata:
+          annotations:
+            autoscaling.knative.dev/target: "10"
+        spec:
+          container:
+            image: dev.local/burrsutter/csharp:1.0.0
+            resources:
+              requests: 
+                memory: "50Mi" 
+                cpu: "75m" 
+              limits:
+                memory: "100Mi"
+                cpu: "75m" 
+            livenessProbe:
+              httpGet:
+                path: /
+            readinessProbe:
+              httpGet:
+                path: /
