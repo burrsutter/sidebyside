@@ -5,3 +5,6 @@ target
 .settings
 .vscode
 .editorconfig
+bin
+obj
+out
