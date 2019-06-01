@@ -12,6 +12,7 @@ spec:
         spec:
           container:
             image: docker.io/burrsutter/csharp:1.0.0
+            imagePullPolicy: "Always"
             ports:
             - containerPort: 80
             resources:
