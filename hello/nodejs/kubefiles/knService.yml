@@ -11,7 +11,7 @@ spec:
             autoscaling.knative.dev/target: "10"
         spec:
           container:
-            image: dev.local/burrsutter/noded:1.0.0
+            image: dev.local/burrsutter/noded:1.0.1
             resources:
               requests: 
                 memory: "45Mi" 

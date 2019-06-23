@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: noded
-        image: quay.io/burrsutter/noded:1.0.0
+        image: quay.io/burrsutter/noded:1.0.1
         ports:
           - containerPort: 8080
         resources:
