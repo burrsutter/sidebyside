@@ -11,13 +11,13 @@ spec:
             autoscaling.knative.dev/target: "10"      
         spec:
           container:
-            image: docker.io/burrsutter/quarked:1.0.0
+            image: docker.io/burrsutter/quarked:1.0.2
             resources:
               requests: 
-                memory: "30Mi" 
+                memory: "50Mi" 
                 cpu: "75m" 
               limits:
-                memory: "30Mi"
+                memory: "50Mi"
                 cpu: "75m" 
             livenessProbe:
               httpGet:

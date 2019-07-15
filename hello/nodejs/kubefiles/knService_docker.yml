@@ -14,10 +14,10 @@ spec:
             image: docker.io/burrsutter/noded:1.0.1
             resources:
               requests: 
-                memory: "45Mi" 
+                memory: "55Mi" 
                 cpu: "75m" 
               limits:
-                memory: "45Mi"
+                memory: "55Mi"
                 cpu: "75m" 
             livenessProbe:
               httpGet:
