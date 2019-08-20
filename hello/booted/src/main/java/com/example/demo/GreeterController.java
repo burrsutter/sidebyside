@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreeterController {
 
-    private String prefix = "Hola";
+    private String prefix = "Hola Boot";
       
     private static final String HOSTNAME =
             System.getenv().getOrDefault("HOSTNAME", "unknown");

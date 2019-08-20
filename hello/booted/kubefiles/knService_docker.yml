@@ -11,7 +11,7 @@ spec:
             autoscaling.knative.dev/target: "10"
         spec:          
           container:
-            image: docker.io/burrsutter/booted:1.0.0
+            image: docker.io/burrsutter/booted:2.0.0
             resources:
               requests: 
                 memory: "150Mi" 

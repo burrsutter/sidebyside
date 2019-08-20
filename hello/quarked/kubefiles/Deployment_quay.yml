@@ -2,20 +2,20 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: quarked
-  name: quarked
+    app: quarkedburr
+  name: quarkedburr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: quarked
+      app: quarkedburr
   template:
     metadata:
       labels:
-        app: quarked
+        app: quarkedburr
     spec:
       containers:
-      - name: quarked
+      - name: quarkedburr
         image: quay.io/burrsutter/quarked:1.0.0
         ports:
           - containerPort: 8080
