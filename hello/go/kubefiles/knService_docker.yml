@@ -12,13 +12,6 @@ spec:
         spec:
           container:
             image: docker.io/burrsutter/gonow:1.0.0
-            resources:
-              requests: 
-                memory: "10Mi" 
-                cpu: "75m" 
-              limits:
-                memory: "10Mi"
-                cpu: "75m" 
             livenessProbe:
               httpGet:
                 path: /healthz
