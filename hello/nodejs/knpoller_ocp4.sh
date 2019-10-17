@@ -1,5 +1,5 @@
 #!/bin/bash
-KSVC_URL="$(kubectl -n sidebyside get ksvc noded -o jsonpath='{.status.url}')"
+KSVC_URL="$(kubectl -n ajug get ksvc noded -o jsonpath='{.status.url}')"
 
 while true
 do curl $KSVC_URL
