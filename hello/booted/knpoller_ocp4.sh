@@ -1,5 +1,5 @@
 #!/bin/bash
-KSVC_URL="$(kubectl get ksvc booted -o jsonpath='{.status.url}')"
+KSVC_URL="$(kubectl -n sidebyside get ksvc booted -o jsonpath='{.status.url}')"
 
 while true
 do curl $KSVC_URL
