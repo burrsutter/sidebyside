@@ -19,9 +19,9 @@ spec:
               limits:
                 memory: "55Mi"
                 cpu: "75m" 
-            livenessProbe:
-              httpGet:
-                path: /healthz
+#            livenessProbe:
+#              httpGet:
+#                path: /healthz
             readinessProbe:
               httpGet:
                 path: /healthz
