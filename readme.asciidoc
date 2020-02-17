@@ -1,0 +1,118 @@
+
+=== Side By Side Demo
+
+Offers Kubernetes Deployments and Knative Serving services of:
+
+* dotnetcore
+
+* Go
+
+* Nodejs
+
+* Python
+
+* Quarkus
+
+* Spring Boot
+
+== Quickstart with Knative Serving
+
+----
+kubectl create namespace sidebyside
+kubens sidebyside
+----
+OR
+----
+oc new-project sidebyside
+----
+
+=== Node.js
+----
+cd hello/nodejs
+kubectl apply -f kubefiles/knService_docker.yml
+# the last I checked, Knative Serving worked best with docker hub due to registry API v2_2 
+./knpoller_ocp4.sh
+# there other poller scripts depending on your Kubernetes variant
+Node Hello on noded-wj854-deployment-569f8cd6cd-vn9g9:1
+Node Hello on noded-wj854-deployment-569f8cd6cd-vn9g9:2
+----
+
+=== Quarkus
+----
+cd hello/quarked
+kubectl apply -f kubefiles/knService_docker.yml
+./knpoller_ocp4.sh
+Aloha quarked-qwt7d-deployment-6f4ccfffc5-g2xxg:1
+Aloha quarked-qwt7d-deployment-6f4ccfffc5-g2xxg:2
+----
+
+=== Spring Boot
+
+----
+cd hello/booted
+kubectl apply -f kubefiles/knService_docker.yml
+./knpoller_ocp4.sh
+Hola Boot booted-kskv5-deployment-68f8f944ff-h8lvs:1
+Hola Boot booted-kskv5-deployment-68f8f944ff-h8lvs:2
+----
+
+=== Burst
+
+The Knative Service yaml definition includes the following:
+----
+        metadata:
+          annotations:
+            autoscaling.knative.dev/target: "10"
+----
+
+The out-of-the-box default is *100* which is hard to "overload" and cause more than 1 pod to spawn.
+
+The *knBurst* scripts use a tool called *siege* to send in 40 concurrent requests, causing Knative to scale to 4 pods.
+
+Terminal 1:
+----
+watch kubectl get pods
+----
+
+Terminal 2:
+----
+./knburst_ocp4.sh
+** SIEGE 4.0.4
+** Preparing 40 concurrent users for battle.
+The server is now under siege..
+----
+
+Terminal 1:
+----
+NAME                                      READY   STATUS              RESTARTS   AGE
+noded-wj854-deployment-569f8cd6cd-9bwtl   1/2     Running             0          11s
+noded-wj854-deployment-569f8cd6cd-db7vl   1/2     Running             0          10s
+noded-wj854-deployment-569f8cd6cd-j4bsm   0/2     ContainerCreating   0          8s
+noded-wj854-deployment-569f8cd6cd-kxr2f   1/2     Running             0          10s
+----
+
+=== Monitoring Memory
+
+image::images/openshift_menu.png[]
+
+*Metrics*
+The Prometheus built into OpenShift 4.x will display the memory usage - sometimes (not working as of Feb 16 2020).
+
+The PromQL is
+----
+container_memory_rss{namespace="sidebyside",container_name =~ "user-container"}
+----
+
+*Dashboards*
+
+Grafana
+
+Note: "azr.burrsutter.net" will be unique to your OCP installation
+----
+https://grafana-openshift-monitoring.apps.azr.burrsutter.net/?orgId=1
+----
+
+Select *Kubernetes / Compute Resources / Namespace (Pods)*
+
+image::images/grafana_memory.png[Kubernetes / Compute Resources / Namespace (Pods)]
+
