@@ -1,5 +1,5 @@
 
-=== Side By Side Demo
+= Side By Side Demo
 
 Offers Kubernetes Deployments and Knative Serving services of:
 
@@ -91,25 +91,31 @@ noded-wj854-deployment-569f8cd6cd-j4bsm   0/2     ContainerCreating   0         
 noded-wj854-deployment-569f8cd6cd-kxr2f   1/2     Running             0          10s
 ----
 
-=== Monitoring Memory
+== Dashboards
+
+=== Prometheus
+
+[source,bash]
+----
+open https://$(oc -n openshift-monitoring get route prometheus-k8s -o jsonpath='{..spec.host}')
+----
+
+Or else you can open the integrated prometheus dashboard within OpenShift:
 
 image::images/openshift_menu.png[]
 
-*Metrics*
-The Prometheus built into OpenShift 4.x will display the memory usage (working with OCP 4.3.8 as of April 20th 2020).
+==== Metrics
 
 The PromQL is
 ----
 container_memory_rss{namespace="sidebyside",container="user-container"}
 ----
 
-*Dashboards*
+=== Grafana
 
-Grafana
-
-Note: "azr.burrsutter.net" will be unique to your OCP installation
+[source,bash]
 ----
-https://grafana-openshift-monitoring.apps.azr.burrsutter.net/?orgId=1
+open https://$(oc -n openshift-monitoring get route grafana -o jsonpath='{..spec.host}')
 ----
 
 Select *Kubernetes / Compute Resources / Namespace (Pods)*
