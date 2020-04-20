@@ -107,9 +107,14 @@ image::images/openshift_menu.png[]
 ==== Metrics
 
 The PromQL is
+
 ----
 container_memory_rss{namespace="sidebyside",container="user-container"}
 ----
+
+You should then see a graph like this one:
+
+image::images/prometheus-memory-query.png[]
 
 === Grafana
 
