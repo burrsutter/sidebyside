@@ -100,7 +100,7 @@ The Prometheus built into OpenShift 4.x will display the memory usage (working w
 
 The PromQL is
 ----
-container_memory_rss{namespace="sidebyside",container=~"user-container"}
+container_memory_rss{namespace="sidebyside",container="user-container"}
 ----
 
 *Dashboards*
