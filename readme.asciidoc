@@ -96,11 +96,11 @@ noded-wj854-deployment-569f8cd6cd-kxr2f   1/2     Running             0         
 image::images/openshift_menu.png[]
 
 *Metrics*
-The Prometheus built into OpenShift 4.x will display the memory usage - sometimes (not working as of Feb 16 2020).
+The Prometheus built into OpenShift 4.x will display the memory usage (working with OCP 4.3.8 as of April 20th 2020).
 
 The PromQL is
 ----
-container_memory_rss{namespace="sidebyside",container_name =~ "user-container"}
+container_memory_rss{namespace="sidebyside",container=~"user-container"}
 ----
 
 *Dashboards*
