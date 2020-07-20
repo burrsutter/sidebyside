@@ -9,6 +9,7 @@ spec:
         metadata:
           annotations:
             autoscaling.knative.dev/target: "10"
+            autoscaling.knative.dev/window: 16s            
         spec:
           container:
             image: docker.io/burrsutter/pythoned:1.0.0

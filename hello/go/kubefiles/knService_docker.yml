@@ -8,7 +8,8 @@ spec:
       revisionTemplate:
         metadata:
           annotations:
-            autoscaling.knative.dev/target: "10"      
+            autoscaling.knative.dev/target: "10"
+            autoscaling.knative.dev/window: 16s            
         spec:
           container:
             image: docker.io/burrsutter/gonow:1.0.0
