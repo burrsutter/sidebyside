@@ -1,31 +1,23 @@
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: csharp
 spec:
-  runLatest:
-    configuration:
-      revisionTemplate:
-        metadata:
-          annotations:
-            autoscaling.knative.dev/target: "10"
-            autoscaling.knative.dev/window: 16s            
-        spec:
-          container:
-            image: docker.io/burrsutter/csharp:1.0.0
-            imagePullPolicy: "Always"
-            ports:
-            - containerPort: 80
-            resources:
-              requests: 
-                memory: "70Mi" 
-                cpu: "75m" 
-              limits:
-                memory: "150Mi"
-                cpu: "100m" 
-            # livenessProbe:
-            #   httpGet:
-            #     path: /
-            # readinessProbe:
-            #   httpGet:
-            #     path: /
+  template:
+    metadata:
+      annotations:        
+        autoscaling.knative.dev/target: "10"
+        autoscaling.knative.dev/window: 16s            
+    spec:
+      containers:
+      - image: docker.io/burrsutter/csharp:1.0.0
+        resources:
+          requests: 
+            memory: "70Mi" 
+            cpu: "75m" 
+          limits:
+            memory: "70Mi"
+            cpu: "75m" 
+        readinessProbe:
+          httpGet:
+            path: /healthz

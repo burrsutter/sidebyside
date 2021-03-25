@@ -1,28 +1,23 @@
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: pythoned
 spec:
-  runLatest:
-    configuration:
-      revisionTemplate:
-        metadata:
-          annotations:
-            autoscaling.knative.dev/target: "10"
-            autoscaling.knative.dev/window: 16s            
-        spec:
-          container:
-            image: docker.io/burrsutter/pythoned:1.0.0
-            resources:
-              requests: 
-                memory: "30Mi" 
-                cpu: "75m" 
-              limits:
-                memory: "30Mi"
-                cpu: "75m" 
-            livenessProbe:
-              httpGet:
-                path: /
-            readinessProbe:
-              httpGet:
-                path: /
+  template:
+    metadata:
+      annotations:        
+        autoscaling.knative.dev/target: "10"
+        autoscaling.knative.dev/window: 16s            
+    spec:
+      containers:
+      - image: docker.io/burrsutter/pythoned:1.0.0
+        resources:
+          requests: 
+            memory: "30Mi" 
+            cpu: "75m" 
+          limits:
+            memory: "30Mi"
+            cpu: "75m" 
+        readinessProbe:
+          httpGet:
+            path: /healthz
