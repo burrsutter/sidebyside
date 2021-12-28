@@ -55,7 +55,7 @@
     "nyc": "~12.0.2",
     "proxyquire": "^2.0.0",
     "rhoaster": "~0.2.0",
-    "standard-version": "^4.3.0",
+    "standard-version": "^8.0.1",
     "supertest": "^3.0.0",
     "szero": "^1.0.0",
     "tap-spec": "~5.0.0",
